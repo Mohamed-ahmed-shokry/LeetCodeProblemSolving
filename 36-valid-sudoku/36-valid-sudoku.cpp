@@ -9,12 +9,11 @@ public:
             for(int j = 0; j < n; j++){
                 int element = board[i][j];
                 
-                if(element == '.')
-                    continue;
+                if(element != '.')
+                {
+                     string rowFind = to_string(element) + "found at row" + to_string(i);
                 
-                string rowFind = to_string(element) + "found at row" + to_string(i);
-                
-                string colFind = to_string(element) + "found at column" + to_string(j);
+                    string colFind = to_string(element) + "found at column" + to_string(j);
                 
                 string boxFind = to_string(element) + "found at box" + to_string(i/3) + '-' + to_string(j/3);
 
@@ -29,6 +28,10 @@ public:
                seen[boxFind]++;
             
             }
+                }
+                    
+                
+               
         }
         return true;
         
