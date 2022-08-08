@@ -14,28 +14,31 @@ public:
     vector<vector<int>> levelOrder(TreeNode* root)
     {
         vector<vector<int>> result;
+        queue<TreeNode *> q;
+        TreeNode* dummy;
         if (!root) return result;
 
-        queue<TreeNode *> q;
         q.push(root);
         
         while (!q.empty()) 
         {
             int n = q.size();
-            vector<int> crtLevel;
+            vector<int> currLevel;
             
-            for (int i = 0; i < n; i++) 
+            while (n--)
             {
-                TreeNode *p = q.front();
-                
+                dummy = q.front();
                 q.pop();
-                crtLevel.push_back(p->val);
+                currLevel.push_back(dummy->val);
                 
-                if (p->left) q.push(p->left);
-                if (p->right) q.push(p->right);
-            }   
+                if(dummy->left)
+                    q.push(dummy->left);
+                if (dummy->right)
+                    q.push(dummy->right);
+                
+            }
             
-            result.push_back(crtLevel);
+            result.push_back(currLevel);
       }
         
       return result;
