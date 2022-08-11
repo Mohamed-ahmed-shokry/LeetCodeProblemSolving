@@ -1,20 +1,27 @@
 class Solution {
 public:
-    string intToRoman(int num) {
-        vector<int> in={1000,900,500,400,100,90,50,40,10,9,5,4,1};
-        int sizeIn = in.size(), count;
-        vector<string> roman={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
-        string ans  = "";
-        
-        
-        for(int i = 0; i < sizeIn; ++i)
+    string intToRoman(int num)
+    {
+        string ans = "";
+        unordered_map<int, string> myMap
         {
-            count = num/in[i];
-            
-            while (count--)
-                ans += roman[i];
-            
-            num %= in[i];
+            {1, "I"},{2, "II"},{3, "III"},{4, "IV"},{5, "V"},
+            {6, "VI"},{7, "VII"},{8, "VIII"},{9, "IX"},
+            {10, "X"},{20, "XX"},{30, "XXX"},{40, "XL"},{50, "L"},
+            {60, "LX"},{70, "LXX"},{80, "LXXX"},{90, "XC"},
+            {100, "C"},{200, "CC"},{300, "CCC"},{400, "CD"},{500, "D"},
+            {600, "DC"},{700, "DCC"},{800, "DCCC"},{900, "CM"},{1000, "M"},
+            {2000, "MM"}, {3000, "MMM"}
+        };
+        
+        int temp, divider = 1;
+        
+        while (num)
+        {
+            temp = num%10 * divider;
+            ans = myMap[temp] + ans;
+            divider *= 10;
+            num /= 10;
         }
         
         return ans;
