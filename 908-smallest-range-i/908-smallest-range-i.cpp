@@ -6,8 +6,10 @@ public:
         
         for (int num:nums)
         {
-            maxNum = max(num, maxNum);
-            minNum = min(num, minNum);
+            if (num > maxNum)
+                maxNum = num;
+            if (num < minNum)
+                minNum = num;
         }
         
         return max((maxNum - k) - (minNum + k), 0); 
