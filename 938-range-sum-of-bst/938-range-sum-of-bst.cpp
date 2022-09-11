@@ -11,24 +11,19 @@
  */
 class Solution {
 private:
-    // int sum = 0;
-    void rangeSum(TreeNode* root, int low, int high, int &sum)
+    int sum = 0;
+public:
+    int rangeSumBST(TreeNode* root, int low, int high) 
     {
-        if (root == nullptr) return;
-        
+        if (root == nullptr) return 0;
         if (root->val <= high && root->val >= low)
         {
             sum += root->val;
         }
         
-        rangeSum(root->left, low, high, sum);
-        rangeSum(root->right, low, high, sum);
-    }
-public:
-    int rangeSumBST(TreeNode* root, int low, int high) 
-    {
-        int sum = 0;
-        rangeSum(root, low, high, sum);
+        rangeSumBST(root->right, low, high);
+        rangeSumBST(root->left, low, high);
+        
         return sum;
     }
 
